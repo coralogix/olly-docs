@@ -1,8 +1,8 @@
-- **Table of Contents**
-
----
+# Olly: Coralogix AI Observability Assistant
 
 **Olly** is Coralogix’s AI-native observability agent that makes observability data fast, accessible, and actionable—for everyone. Traditionally, teams have spent valuable time piecing together dashboards and writing queries to troubleshoot issues. Olly changes that by letting you ask real questions in natural language and delivering instant, intelligent answers from across your logs, metrics, and traces.
+
+![](./images/olly-hero.png)
 
 Whether you're an engineer, SRE, product owner, or business stakeholder, Olly helps reduce mean time to resolution (MTTR), identify root causes in seconds, and guide you through both immediate fixes and long-term solutions. By interpreting your questions and pulling insights directly from the Coralogix platform, Olly makes observability useful across technical and non-technical teams alike. By the end of this guide, you’ll be able to activate and start using your new AI observability assistant to analyze your telemetry data in real time.
 
@@ -48,7 +48,7 @@ Only users with Olly organization admin permissions can integrate with Olly.  If
 
 To integrate Olly with your Coralogix environment, you’ll need:
 
-![image.png](attachment:2ce656ba-fe9e-498a-996d-24745bc1380a:image.png)
+![](./images/team-key-cs-modal.png)
 
 - A Coralogix Team [API key](https://coralogix.com/docs/user-guides/account-management/api-keys/api-keys/) with the `DataQuerying` role.
 - The API key must be created by a Coralogix user with full data access permissions.
@@ -68,29 +68,22 @@ To start using Olly with your data, connect it to your environment by entering a
 
 1. When you first arrive at the Olly interface, click the **Coralogix Integration** option in the sidebar menu to open the setup modal. Select **Connect now** to begin the integration process. 
     
-    ![image.png](attachment:7a6d671a-841a-48bb-b56c-555a56770227:image.png)
+    ![image.png](./images/olly-cx-integration-cta.png)
     
 2. Paste your Coralogix [API key](https://coralogix.com/docs/user-guides/account-management/api-keys/api-keys/) into the designated field. Once entered, you’ll see confirmation that your credentials have been accepted.
     
-    ![image.png](attachment:116fdcd6-7661-4902-96f7-7f0be3055cb0:image.png)
+    ![image.png](./images/olly-api-key-modal.png)
     
+3. Click **Connect** to authorize Olly to access your Coralogix workspace.
 
-> ~~You can also choose to integrate from a supported source such as Postman, cURL, Python, or other language-based clients. The interface will display these options.~~
-> 
-1. Click **Connect** to authorize Olly to access your Coralogix workspace.
-2. Wait for the integration to finish. When it’s complete, a green success indicator will confirm that Olly is ready to use.
+4. Wait for the integration to finish. When it’s complete, a green success indicator will confirm that Olly is ready to use.
     
-    ![image.png](attachment:2c490b6d-d380-49d5-b21c-5b735fbeff0b:image.png)
+    ![image.png](./images/success-message.png)
     
     Once connected, Olly begins indexing your organizations data and mapping fields in the background. Olly delivers high quality results from the start, with these processes further improving accuracy over time. 
     
-- ~~You’ll be able to try a sample prompt like “Why is my app slow?” or choose from predefined suggestions.~~
 
 You can now begin interacting with Olly directly through the chat interface. Ask any observability question in natural language, and Olly will scan your logs, metrics, and traces to provide insights, root causes, or recommendations.
-
-## ~~Managing integrations and settings~~
-
-~~Olly includes configuration options within both the Coralogix UI and external setup flows to help teams manage how and where Olly is used. These include integration with Kubernetes environments, desktop agent visibility, and feature toggles for workspace-level control.~~
 
 ## Data processing, privacy, and compliance
 
@@ -109,5 +102,5 @@ Olly is fully **GDPR compliant** and may be used in environments requiring **HIP
 Olly, Coralogix’s AI Observability Assistant, is governed by the [Coralogix Master Subscription Terms](https://coralogix.com/terms-conditions/) and the [AI Tools Acceptable Use Policy](https://coralogix.com/ai-tools-policy/). These terms outline permitted use, data handling responsibilities, and user obligations for AI-based features.
 
 ## Additional resources
-
-[Demo video](https://olly.new/)
+![Watch Olly Demo Video](https://embed-ssl.wistia.com/deliveries/fd57abb5df92782e6183657a41d14689d9baf6df.jpg?image_play_button_size=2x&image_crop_resized=960x540&image_play_button_rounded=1&image_play_button_color=000000e0)
+*Olly Demo Video*
