@@ -10,9 +10,31 @@
         "tab": "Components",
         "groups": [
           {
-            "group": "Quick start",
+            "group": "🤗 Introduction",
             "pages": [
-              "content/quick-start"
+              "content/olly-intro",
+              "content/olly-what-can-do",
+              "content/olly-how-it-works"
+            ]
+          },
+          {
+            "group": "🚀 Quick Start",
+            "pages": [
+              "content/olly-integration-reqs",
+              "content/olly-integration-getting-started"
+            ]
+          },
+          {
+            "group": "🔒 Policies",
+            "pages": [
+              "content/olly-data-privecy-compliance",
+              "content/olly-terms"
+            ]
+          },
+          {
+            "group": "🔗 Additional resources",
+            "pages": [
+              "content/olly-additional-resources"
             ]
           }
         ]

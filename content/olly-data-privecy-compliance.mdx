@@ -1,0 +1,16 @@
+---
+title: "Data Processing, Privacy, and Compliance"
+---
+
+
+Olly is designed with strict privacy and compliance controls. While it leverages **OpenAI's large language models**, **all processing takes place within Coralogix’s private deployment of Azure OpenAI**, hosted entirely in a secure Azure VPC. This ensures that:
+
+- **Your telemetry data remains protected - never accessible to anyone outside your organization**
+- **OpenAI and other third-party vendors can’t access or store your data**
+- **Processed data is never used to train large language models (LLMs)**
+
+Olly processes the telemetry data relevant to a user’s query - including logs, metrics, and traces - based on the context of the investigation. Processing occurs in **Microsoft Azure data centers**, and aligns with the geographic region selected by the customer (e.g., EU, US, or APAC). **No data is stored externally** during this process.
+
+Olly is fully **GDPR compliant** and may be used in environments requiring **HIPAA compliance**, making it suitable for regulated industries and healthcare contexts.
+
+
