@@ -14,6 +14,12 @@
             "pages": [
               "content/quick-start"
             ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "content/olly-integration"
+            ]
           }
         ]
       }
