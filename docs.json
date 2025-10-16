@@ -36,6 +36,12 @@
             "pages": [
               "content/olly-additional-resources"
             ]
+          },
+          {
+            "group": "⏩ Release Notes",
+            "pages": [
+              "content/olly-release-notes-oct-2025"
+            ]
           }
         ]
       }
