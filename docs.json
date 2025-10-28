@@ -25,6 +25,11 @@
             ]
           },
           {
+            "group": "🧩 Integrations",
+            "pages": [
+              "content/olly-slack-integration"           ]
+          },
+          {
             "group": "🔒 Policies",
             "pages": [
               "content/olly-data-privecy-compliance",
