@@ -30,6 +30,7 @@ With Olly available in channels and DMs, your team can access intelligent answer
 1. In Olly: go to **Settings → Integrations → Slack**  
 2. Click **Connect** and approve in Slack (as Admin) to add the Olly app to your workspace  
 3. Once connected, the status will show **Connected**
+4. In Slack: click on 'Add Apps' in the 'Apps' section on your home team and add the Olly app in your region
 
 ![Slack integration setup](./images/connect_slack_integration2.gif)
 
@@ -39,7 +40,9 @@ With Olly available in channels and DMs, your team can access intelligent answer
 - In any public or private channel, or in a DM with your Olly app, mention your region-specific handle with a clear prompt:  
   - `@Olly-EU2 show P95 latency for auth-service (last 24h)`  
   - `@Olly-EU2 summarize the 500s spike after the latest deploy`
-- Olly replies **in a thread** to keep conversations tidy  
+- Olly replies **in a thread** to keep conversations tidy
 - Continue the conversation with Olly in the thread using the `@Olly-<region>` handle
 - Replies include links to related **artifacts in Olly** for deeper analysis  
-- Slack thread content is **not mirrored** as chat in Olly — only artifacts are accessible  
+- Slack thread content is **not mirrored** as chat in Olly — only artifacts are accessible
+**Note:** Each Slack workspace can be connected to only **one Olly organization** at a time. 
+It's not possible to connect another Olly organization from the same region to a Slack workspace, once an integration to Olly already exists there.
