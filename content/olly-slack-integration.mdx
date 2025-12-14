@@ -20,19 +20,21 @@ With Olly available in channels and DMs, your team can access intelligent answer
 
 ## Requirements
 
-- An Olly organization integrated with Coralogix  
+- An organiztional Coralogix data source.
 - You must be an **Olly organization admin** to install  
 - Add the Olly app to the target channel using `/invite @Olly-<region>` (e.g., `/invite @Olly-EU2`) or send a message directly to the app as a DM  
 - Use your **region-specific tag** when mentioning Olly (e.g., `@Olly-EU2`)
 
 ## How to install
 
-1. In Olly: go to **Settings → Integrations → Slack**  
-2. Click **Connect** and approve in Slack (as Admin) to add the Olly app to your workspace  
-3. Once connected, the status will show **Connected**
-4. In Slack: click on 'Add Apps' in the 'Apps' section on your home team and add the Olly app in your region
+1. Go to **Settings → Integrations → Slack**.
+2. Select **Connect Slack** and follow the Slack OAuth flow.
+3. When prompted, choose which organizational data source Slack should use. **Only organizational data sources can be exposed to Slack**.
+4. Save your changes.
+Once connected Olly answers using the selected data source.
 
-![Slack integration setup](./images/connect_slack_integration2.gif)
+You can change the Slack data source later. The new selection applies to future questions; past messages are unaffected.
+Slack uses one Coralogix data source at a time.
 
 
 ## How it works

@@ -2,15 +2,284 @@
 title: "Data Processing, Privacy, and Compliance"
 ---
 
+This page outlines how Olly processes, protects, and governs your data, as well as its role within the broader Coralogix security and compliance program.
 
-Olly is designed with strict privacy and compliance controls. While it leverages **OpenAI's large language models**, **all processing takes place within Coralogix’s private deployment of Azure OpenAI**, hosted entirely in a secure Azure VPC. This ensures that:
+Olly inherits the same technical and organizational controls that protect the rest of the platform, including access controls, data segregation, and audited security programs aligned with ISO 27001 and SOC 2 Type II.
 
-- **Your telemetry data remains protected - never accessible to anyone outside your organization**
-- **OpenAI and other third-party vendors can’t access or store your data**
-- **Processed data is never used to train large language models (LLMs)**
+## Architecture and data flow
 
-Olly processes the telemetry data relevant to a user’s query - including logs, metrics, and traces - based on the context of the investigation. Processing occurs in **Microsoft Azure data centers**, and aligns with the geographic region selected by the customer (e.g., EU, US, or APAC). **No data is stored externally** during this process.
+When someone asks Olly a question, the request follows a constrained, audited path:
 
-Olly is fully **GDPR compliant** and may be used in environments requiring **HIPAA compliance**, making it suitable for regulated industries and healthcare contexts.
+1. A user submits a prompt from the [Olly interface](https://olly.mintlify.app/content/olly-how-it-works) or supported integrations such as Slack.
+2. Olly authenticates the user with their Coralogix identity and permissions.
+3. Olly fetches only the telemetry or resources needed to answer the question (logs, metrics, traces, and alerts) from the customer’s Coralogix account by running queries against the Coralogix Schema Store.
+4. Olly builds a context window that includes:
+    - The user’s question
+    - Summaries or sampled slices of relevant telemetry
+    - Internal instructions that enforce Coralogix policies
+5. This context is sent to a dedicated Azure OpenAI deployment that runs inside Coralogix’s own Azure virtual network (VNet). 
+6. The model generates a response, which Olly returns to the user and may use to trigger optional follow-up actions, such as generating and running queries against the Coralogix Schema Store using fields from your logs, traces, and metrics.
 
+Key points:
 
+- With the current default configuration, Olly processes prompts and responses using a private Azure OpenAI deployment that runs inside Coralogix’s own Azure virtual network. In this mode, customer telemetry is processed entirely within Coralogix-managed Azure infrastructure and is not available to OpenAI as a standalone service or to other third parties.
+- As Coralogix adds optional support for additional enterprise model providers (for example, deployments of Gemini on Google Cloud Vertex AI or Claude on AWS) and internet-facing integrations, customers will be able to choose those options explicitly. When you enable such options, Olly sends only the minimal prompt and telemetry context needed to the selected provider’s enterprise environment. This context can include field names and representative sample values from the relevant parts of your Coralogix Schema Store, allowing the model to generate accurate descriptions of fields and better understand your logs, metrics, and traces. All data sent to these providers is handled in accordance with Coralogix’s data protection, subprocessor, and contractual commitments, and is never routed through public consumer AI endpoints.
+- When Olly generates queries, it executes them against the Coralogix Schema Store, which indexes the fields available in your logs, traces, and metrics.
+- Olly does not create a separate data store outside Coralogix. Any data it generates (such as saved queries, dashboards, or alerts) lives inside your existing Coralogix infrastructure and remains subject to the same access controls, retention settings, and audit capabilities as manually created content.
+
+## Data categories and minimization
+
+Olly is designed to use the minimum data required to answer each question.
+
+Data that may be processed:
+
+- Telemetry: Logs, metrics, and traces
+- Resources: Alerts, Dashboards (when a URL is shared explicitly)
+- Account context:
+    - Service names, applications, subsystems, environments, and fields
+    - Other configuration metadata
+- User interactions:
+    - Prompts and follow-up questions
+    - Olly’s responses
+    - Optional feedback signals (for example, "thumbs up/down") if implemented
+- Optional customer-provided context:
+    - Dashboard URLs that you share with Olly so it can analyze and explain those views
+    - Files you attach as context, when this capability is enabled for your account
+
+For Olly specifically:
+
+- Olly only accesses and processes telemetry for which it has authorization, either via a Coralogix API key or an access token obtained when a user signs in using the login with Coralogix.
+- Olly processes telemetry relevant to the query or investigation across logs, metrics, and traces.
+- Olly does not process billing data or data from external systems unless those systems are explicitly connected to Coralogix and used in the context of the question. Authentication and seat management are handled by dedicated providers (for example, Clerk for user authentication management and Metronome for seat management), and their data is not sent to the model as context.
+- Data sent to Azure OpenAI is limited to the contextual snippets needed to answer the active question rather than the full dataset.
+- In addition to those snippets, Olly generates model-friendly descriptions of relevant customer fields and other schema elements so the model can better understand your environment and telemetry.
+
+## Identity and access
+
+Olly controls access to Coralogix data through data sources. Every question runs against one or more configured data sources that define which teams and telemetry Olly can query. Personal data sources keep the creator’s existing Coralogix permissions and policies and are visible only to that creator. An Olly admin creates organizational data sources and mirrors the permissions and policies associated with the key or token used to create them. This means that any data available to the creator of an organizational data source becomes available to every member that the admin shares that data source with.
+
+### Access Olly
+
+Olly generates and runs queries on your behalf only after it has been granted access to your Coralogix account. This happens in one of two login methods:
+
+1. Coralogix login using an access token, or
+2. Manual login via Gmail using a Coralogix API key. 
+
+In the login with Coralogix flow, Olly receives an access token scoped to the teams to which they have access and uses that token to perform queries against the Coralogix Schema Store.
+
+### Coralogix login
+
+When you log in with Coralogix, Olly determines the region from your Coralogix domain at the time of login.
+
+1. Sign in to Olly using the login with Coralogix.
+2. After you are signed in, create a data source using an access token.
+3. Select the relevant teams from that region.
+4. Create either a personal or an organizational data source based on how you want to share access.
+
+### Manual login
+
+1. Sign in to Olly using your Gmail account. Olly uses the default region configured for your Olly organization.
+2. Create either a personal or an organizational data source:
+    - Use a personal API key from one of your Coralogix teams for a personal data source.
+    - Use a team API key for an organizational data source.
+
+### Olly platform roles and authentication
+
+- Olly uses Clerk as its authentication provider.
+- Within Olly, there are two roles:
+    - Admin
+    - Member
+- Olly admins manage:
+    - Organization members
+    - Invitations for new members
+    - Adding and removing users
+    - The organization’s usage and pricing plans
+- These Olly roles apply only within the Olly organization. Admin permissions do not grant any additional access to Coralogix data, and there is no direct mapping between an admin in Olly and an admin in Coralogix.
+
+### Activation and administration
+
+- Olly is not enabled by default for a Coralogix account.
+- Olly is disabled by default and must be explicitly activated or deactivated by a Coralogix user with the relevant permissions in Settings > Account Preferences > AI Capabilities.  Activation on this page governs whether Olly can access Coralogix via login to discover teams from access tokens.
+
+### Data sources and access to Coralogix data
+
+In general availability, Olly uses data sources to determine which Coralogix data it can query to generate answers. Data sources are required for Olly to know which Coralogix data it is allowed to access on your behalf.
+
+Data sources are either personal or organizational:
+
+- Personal data sources are accessible only to the member who created them.
+- Organizational data sources are shared and can be created only by an Olly admin. Any member who is granted access to an organizational data source can retrieve data from it, within the limits of the permissions and policies applied to the key or token the admin used to create that data source.
+
+More specifically:
+
+- A data source represents access to one or more Coralogix teams that Olly is allowed to access.
+- Olly only accesses and processes telemetry when it has explicit authorization, either:
+    - A Coralogix personal or team API key, or
+    - An access token is obtained when a user signs in using the login with Coralogix and approves access.
+
+When an organizational data source is used, anyone granted access to that data source can retrieve data from it. Admins should be aware that the data available to the creator of that data source will be available to all members who are granted access to it.
+
+### Personal data sources
+
+- Any Olly member can create a personal data source.
+- A personal data source is private and can be used only by the member who created it.
+- A personal data source can be created in two ways:
+    - The user logs in to Olly using the login with Coralogix, approves access to their data, and Olly uses their access token to discover the Coralogix teams they belong to. Each of those teams becomes a personal data source the user can connect, and Olly can run on it.
+    - The user manually enters a personal API key from one of their Coralogix teams.
+- In both cases:
+    - The personal data source exposes only the data the connecting user is allowed to access in Coralogix.
+    - Olly can query only the logs, metrics, traces, and other resources permitted by that user’s teams and permissions.
+
+### Organizational data sources
+
+- Organizational data sources can be created only by Olly admins.
+- An admin can decide whether an organizational data source is:
+    - Available to all organization members, or
+    - Available only to selected members.
+- To create an organizational data source, an admin either:
+    - Provides a Coralogix team API key, or
+    - Creates the data source using an access token obtained via login with Coralogix.
+- Members who are granted access to an organizational data source can use it as a data source for Olly to run on and generate answers.
+- Members will have access only to the data permitted by the team API key or access token the admin used to create the organizational data source. Olly does not gain broader access than that key or token allows.
+- Admins can change which members have access to an organizational data source at any time.
+
+### Access control behavior
+
+- When Olly retrieves data from Coralogix, it always does so through a configured data source and on behalf of either:
+    - The currently signed-in user, when using the login with Coralogix, or
+    - The Coralogix team associated with the API key used for the data source.
+- In both cases, Olly:
+    - Respects the Coralogix roles, teams, and policies that apply to that token or API key.
+    - Cannot access data outside the teams and permissions associated with that token or API key.
+
+## Tenant isolation and regional data residency
+
+Olly operates within the same multi-tenant isolation model and regional boundaries as the core Coralogix platform.
+
+### Tenant isolation
+
+- Each Coralogix organization is associated with a single parent organization in Olly.
+- At the Olly organization level, members, their permissions, usage, billing, and other organization-wide settings are managed.
+- Under each parent organization, Olly divides data into regions
+- Customer data is segregated from that of other customers using logical separation (for example, per-customer keys) and physical separation by region.
+- Olly cannot access telemetry from a different tenant because it only queries data sources that belong to the Coralogix organization mapped to that Olly organization using the user credentials.
+
+### Regional alignment
+
+- Coralogix supports multiple regions to help customers comply with local data residency requirements.
+- At the region level, Olly manages data sets and integrations, such as Slack integrations, conversations, and conversation history. These artifacts are scoped to the region-specific sub-organization.
+- Olly does not execute multi-region queries. Within any given chat, Olly generates answers only from data sources that all belong to the same region and does not combine data from multiple regions in a single response.
+- For GPT , Olly processes data in Microsoft Azure regions that correspond to the customer’s selected hosting region. For example, if your Coralogix account is hosted in the EU, the associated Azure OpenAI processing for Olly also runs in an EU Azure region.
+- For Claude Olly processes data in AWS regions that correspond to the customer’s selected hosting region. For example, if your Coralogix account is hosted in the EU, the associated processing for Olly also runs in an EU  region.
+- For Gemini users located in Asia, their data will be sent and processed at asia-south1-Mumbai, India, APAC.
+
+## Data protection and network security
+
+Olly inherits Coralogix’s technical and organizational measures for protecting customer data, and uses Azure OpenAI in a way that maintains those protections.
+
+Platform-level protections:
+
+- Encryption:
+    - Data in transit is protected with TLS 1.2 or above.
+    - Data at rest is encrypted using AES-256.
+- Network controls:
+    - Coralogix isolates services in hardened VPCs and uses firewalls, security groups, and intrusion detection solutions to limit traffic and detect suspicious behavior.
+
+Azure OpenAI protections for GPT :
+
+- The Azure OpenAI deployment used by Olly runs inside Coralogix’s own Azure VNet, not a public shared endpoint.
+- Data sent to Azure OpenAI is encrypted in transit and at rest within Microsoft Azure.
+- Azure OpenAI does not use customer data (prompts or completions) to retrain or fine-tune the base models.
+
+## Data retention, logging, and deletion
+
+### Data stores
+
+Olly does not introduce new external data stores or extended retention periods.
+
+- External storage: Olly does not store data externally; no prompts or telemetry are held outside Coralogix infrastructure for abuse monitoring or other secondary purposes.
+- Retention: Telemetry (logs, metrics, traces) and alerts that Olly analyzes is stored and retained according to your existing Coralogix retention settings and storage configuration.
+- Interaction logging:
+    - For security, observability, and support, Olly may log:
+        - User prompts and timestamps
+        - References to the telemetry used as context (for example, query IDs or trace IDs)
+        - Resulting actions (for example, queries run)
+    - These logs are stored in Coralogix under the same encryption, access control, and audit frameworks that apply to other platform logs.
+
+### Retention durations
+
+All of our models, GPT, Claude , and Gemini, do not store cached contents.
+
+User sessions are stored as artifacts within Olly to allow users to access their session history for the duration of the subscription term.
+
+## Governance, admin controls, and usage policies
+
+Olly provides controls so administrators can govern where and how the assistant is used.
+
+- Activation controls:
+    - Olly is disabled by default and must be explicitly activated or deactivated by a Coralogix user with the relevant permissions in Settings > Account Preferences > AI Capabilities.  Activation on this page governs whether Olly can access Coralogix via login to discover teams from access tokens.
+    - When AI capabilities are disabled:
+        - Users can still sign in to Olly.
+        - Users can create data sources manually using personal or team API keys.
+        - The Coralogix team list derived from the user’s access token is not available in Olly, and users cannot create data sources from that team list.
+    - When AI capabilities are enabled:
+        - Olly can use login with Coralogix to retrieve the list of teams associated with the user’s access token.
+        - Users can create data sources based on those Coralogix teams.
+- Policies:
+    - Olly is governed by the Coralogix Master Subscription Terms and Addendum and the AI Tools Acceptable Use Policy, which define permitted and prohibited use of AI capabilities.
+
+## Model provider, subprocessors, and data use
+
+Olly uses OpenAI models hosted by Microsoft Azure as a subprocessor under Coralogix’s existing data protection and subprocessor framework. As Coralogix adds optional support for additional enterprise model providers (for example, deployments of Gemini on Google Cloud Vertex AI or Claude on Azure) and internet-facing integrations, customers will be able to choose those options explicitly. 
+
+- Subprocessors:
+    - Microsoft Azure and GCP act as [subprocessors](https://coralogix.com/authorized-sub-processors/) for model inference and underlying compute, including a contractual obligation for data security and signed Data Processing Agreement.
+- Data use by the model provider:
+    - In line with OpenAI, Claude, and GCP’s policies, customer prompts and completions are not used to train foundation models.
+    - For Olly, OpenAI and Claude cannot access or store your data because the deployment runs inside Coralogix’s own Azure VPC or AWS VPC. For Gemini, processing takes place by Vertex by GCP (not on Coralogix's VPC).
+
+## Compliance frameworks and attestations
+
+Olly runs inside the same security and compliance boundary as the rest of the Coralogix platform.
+
+Coralogix maintains third-party certifications and assessments, including:
+
+- SOC 2 Type II
+- ISO/IEC 27001, 27017, 27018, 27701
+- ISO/IEC 42001:2023 (AI management)
+- PCI DSS v4
+- GDPR and CCPA alignment
+- HIPAA compliance
+- DORA and EU–US Data Privacy Framework support
+
+For Olly specifically:
+
+- Olly is GDPR compliant. HIPAA compliance is subject to signing a BAA with Coralogix.
+- Olly services are provided under the same Coralogix Master Subscription Terms and Addendum and AI Tools Acceptable Use Policy that govern other AI features in Coralogix.
+
+## Security operations and incident response
+
+Olly is covered by Coralogix’s security operations, vulnerability management, and incident response processes.
+
+- Vulnerability management:
+    - Coralogix runs a vulnerability management program, applies patches on industry-standard timelines, and performs regular penetration testing, including for services that support AI features.
+- Monitoring:
+    - Infrastructure and services that power Olly are monitored for availability, performance, and security anomalies.
+- Incident response:
+    - Coralogix maintains a documented incident response plan and conducts regular risk assessments.
+    - If Coralogix becomes aware of a security incident that affects Customer Personal Data, it will notify customers without undue delay and in any case within 48 hours, in line with the Data Processing Agreement.
+
+## AI-specific safeguards and abuse resistance
+
+Generative AI systems introduce new risks, including prompt injection, data exfiltration through natural language, and the misuse of model outputs. Olly is designed to mitigate these risks.
+
+Examples of safeguards:
+
+- Scope limitation:
+    - Olly is restricted to Coralogix APIs and data stores and at this time cannot directly access external systems or arbitrary networks.
+    - Any integrations (for example, Slack) are mediated through Coralogix backends, which enforce additional permissions and validation.
+- System prompts and policy enforcement:
+    - Olly uses internal system prompts that restrict it to allowed actions.
+- Rate limiting and anomaly detection:
+    - Requests to Olly and its underlying Azure OpenAI deployment are subject to rate limits to reduce abuse and denial-of-service risk.
+    - Coralogix AI security tooling can detect patterns that look like prompt injection, jailbreak attempts, or unusual data access.

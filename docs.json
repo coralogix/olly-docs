@@ -17,11 +17,13 @@
               "content/olly-how-it-works"
             ]
           },
+          
           {
-            "group": "🚀 Quick Start",
+            "group": "🌐 Data Sources",
             "pages": [
-              "content/olly-integration-reqs",
-              "content/olly-integration-getting-started"
+              "content/olly-data-sources-intro",
+              "content/olly-cx-data-sources"
+
             ]
           },
           {
@@ -29,11 +31,19 @@
             "pages": [
               "content/olly-slack-integration"           ]
           },
+          
+          {
+            "group": "⚙️ Configuration",
+            "pages": [
+              "content/olly-orgs-and-regions",
+              "content/olly-permissions-reqs"
+            ]
+          },
           {
             "group": "🔒 Policies",
             "pages": [
               "content/olly-data-privecy-compliance",
-              "content/olly-terms"
+              "content/olly-enable-in-cx"
             ]
           },
           {
