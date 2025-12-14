@@ -1,0 +1,57 @@
+---
+title: "Coralogix Data Sources"
+---
+
+Olly connects directly to your Coralogix data so it can answer questions about your systems.
+
+Data sources are how you tell Olly which Coralogix teams and environments it is allowed to use.
+
+To learn more about data sources visit [data sources introduction](https://olly.mintlify.app/content/olly-data-sources-intro)
+
+## Types of data sources
+
+Each data source can be personal or organizational (shared).
+
+### Personal data sources
+
+- Visible and usable only by you (the creator).
+- Use your existing Coralogix permissions and policies.
+- Ideal if you want to ask Olly about your own Coralogix data without exposing it to others.
+- Can be created by any user, subject to the sign-in method and API keys they have.
+
+### Organizational data sources
+
+- Created and managed by organization admins.
+- Mirror the permissions and policies associated with the Coralogix API key that the admin used when creating the data source.
+- Can be shared with:
+    - Everyone in the organization, or
+    - Specific users and/or specific integrations (for example, Slack).
+
+Because organizational data sources mirror the creator’s Coralogix permissions, any data available to the creator becomes available to every user or integration that has access to that data source.
+
+## Creating a personal data source
+
+1. Go to **Settings → Data sources**.
+2. Select **Add data source → Coralogix**.
+3. Choose **Personal**.
+4. Choose how Olly should connect to Coralogix:
+    - If you signed in with Coralogix:
+        - Select a team from the list of teams in your region, or
+        - Switch to manual mode and paste a read-only API key.
+    - If you signed in with Gmail:
+        - Paste a read-only API key for the team you want to query. For personal data sources, you should use a personal API key.
+5. Give the data source a name (for example, `My Prod`, `Staging`) and select **Create**.
+
+## Creating an organizational data source (admins)
+
+1. Go to **Settings → Data sources**.
+2. Select **Add data source → Coralogix**.
+3. Choose **Organizational**.
+4. Paste a team-level API key for the team you want to connect. 
+5. Set sharing:
+    - Everyone in the organization, or
+    - Specific users (you can update this later)
+    - Optionally mark the data source as available for Slack (see below).
+6. Name the data source (for example, `Production`, `EU Prod`, `Shared Sandbox`) and select **Create**.
+
+See [required permissions](https://olly.mintlify.app/content/olly-orgs-and-regions) for Coralogix API key.
