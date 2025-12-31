@@ -31,7 +31,14 @@
             "pages": [
               "content/olly-slack-integration"           ]
           },
-          
+          {
+            "group": "⭐ Features",
+            "pages": [
+              "content/olly-user-rules",
+              "content/olly-fast-focus-modes"
+            
+            ]
+          },
           {
             "group": "⚙️ Configuration",
             "pages": [
@@ -47,7 +54,7 @@
             ]
           },
           {
-            "group": "🔗 Additional resources",
+            "group": "🔗 Additional Resources",
             "pages": [
               "content/olly-additional-resources"
             ]

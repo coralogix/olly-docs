@@ -27,7 +27,7 @@ Use this option when you want to sign in using your Coralogix identity and conte
 
 If you have access to multiple organizations, you’ll be prompted to choose which organization to enter.
 
-Coralogix also affecta which region Olly opens.
+Coralogix also affects which region Olly opens.
 
 
 ### Continue with Google
@@ -50,7 +50,7 @@ Use this option to sign in with an email address.
 
 ### Sign up to Olly
 
-Use this option if you don’t have an Olly account yet and your organization allows sign-ups (for example, during onboarding or a proof of concept).
+Use this option if you don’t have an Olly account yet and your organization allows sign-ups (for example, during onboarding or a proof of concept) or you have received an invitation to sign-up.
 
 1. Select `Sign up to Olly`.
 2. Enter your email address and follow the on-screen steps to create your account.
@@ -85,19 +85,12 @@ If you have access to only one organization, Olly takes you there automatically.
 
 After you enter an organization, Olly opens a region workspace using the following order:
 
-1. Last used region
+1. **Last used region**: Olly returns you to the region you used most recently within that organization.
     
-    Olly returns you to the region you used most recently within that organization.
+2. **Region from Coralogix sign-in**: If you signed in using `Continue with Coralogix`, Olly opens the region that matches your Coralogix sign-in context.
     
-2. Region from Coralogix sign-in
+3. **Organization default region**: If neither of the above applies, Olly opens the organization’s default region.
     
-    If you signed in using `Continue with Coralogix`, Olly opens the region that matches your Coralogix sign-in context.
-    
-3. Organization default region
-    
-    If neither of the above applies, Olly opens the organization’s default region.
-    
-
 If you have access to multiple regions, you can switch regions at any time from the region selector.
 
 ## What you can do after you sign in
