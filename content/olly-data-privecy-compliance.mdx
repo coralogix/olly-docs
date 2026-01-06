@@ -56,7 +56,7 @@ For Olly specifically:
 
 ## Identity and access
 
-Olly controls access to Coralogix data through data sources. Every question runs against one or more configured data sources that define which teams and telemetry Olly can query. Personal data sources keep the creator’s existing Coralogix permissions and policies and are visible only to that creator. An Olly admin creates organizational data sources and mirrors the permissions and policies associated with the key or token used to create them. This means that any data available to the creator of an organizational data source becomes available to every member that the admin shares that data source with.
+Olly controls access to Coralogix data through data sources. Every question runs against one or more configured data sources that define which teams and telemetry Olly can query. Private data sources keep the creator’s existing Coralogix permissions and policies and are visible only to that creator. An Olly admin creates shared data sources and mirrors the permissions and policies associated with the key or token used to create them. This means that any data available to the creator of a shared data source becomes available to every member that the admin shares that data source with.
 
 ### Access Olly
 
@@ -74,14 +74,14 @@ When you log in with Coralogix, Olly determines the region from your Coralogix d
 1. Sign in to Olly using the login with Coralogix.
 2. After you are signed in, create a data source using an access token.
 3. Select the relevant teams from that region.
-4. Create either a personal or an organizational data source based on how you want to share access.
+4. Create either a private or a shared data source based on how you want to share access.
 
 ### Manual login
 
 1. Sign in to Olly using your Gmail account. Olly uses the default region configured for your Olly organization.
-2. Create either a personal or an organizational data source:
-    - Use a personal API key from one of your Coralogix teams for a personal data source.
-    - Use a team API key for an organizational data source.
+2. Create either a private or an shared data source:
+    - Use a personal API key from one of your Coralogix teams for a private data source.
+    - Use a team API key for an shared data source.
 
 ### Olly platform roles and authentication
 
@@ -105,10 +105,10 @@ When you log in with Coralogix, Olly determines the region from your Coralogix d
 
 In general availability, Olly uses data sources to determine which Coralogix data it can query to generate answers. Data sources are required for Olly to know which Coralogix data it is allowed to access on your behalf.
 
-Data sources are either personal or organizational:
+Data sources are either private or shared:
 
-- Personal data sources are accessible only to the member who created them.
-- Organizational data sources are shared and can be created only by an Olly admin. Any member who is granted access to an organizational data source can retrieve data from it, within the limits of the permissions and policies applied to the key or token the admin used to create that data source.
+- Private data sources are accessible only to the member who created them.
+- shared data sources are shared and can be created only by an Olly admin. Any member who is granted access to a shared data source can retrieve data from it, within the limits of the permissions and policies applied to the key or token the admin used to create that data source.
 
 More specifically:
 
@@ -117,31 +117,31 @@ More specifically:
     - A Coralogix personal or team API key, or
     - An access token is obtained when a user signs in using the login with Coralogix and approves access.
 
-When an organizational data source is used, anyone granted access to that data source can retrieve data from it. Admins should be aware that the data available to the creator of that data source will be available to all members who are granted access to it.
+When an shared data source is used, anyone granted access to that data source can retrieve data from it. Admins should be aware that the data available to the creator of that data source will be available to all members who are granted access to it.
 
-### Personal data sources
+### Private data sources
 
-- Any Olly member can create a personal data source.
-- A personal data source is private and can be used only by the member who created it.
-- A personal data source can be created in two ways:
-    - The user logs in to Olly using the login with Coralogix, approves access to their data, and Olly uses their access token to discover the Coralogix teams they belong to. Each of those teams becomes a personal data source the user can connect, and Olly can run on it.
+- Any Olly member can create a private data source.
+- A private data source is private and can be used only by the member who created it.
+- A private data source can be created in two ways:
+    - The user logs in to Olly using the login with Coralogix, approves access to their data, and Olly uses their access token to discover the Coralogix teams they belong to. Each of those teams becomes a private data source the user can connect, and Olly can run on it.
     - The user manually enters a personal API key from one of their Coralogix teams.
 - In both cases:
-    - The personal data source exposes only the data the connecting user is allowed to access in Coralogix.
+    - The private data source exposes only the data the connecting user is allowed to access in Coralogix.
     - Olly can query only the logs, metrics, traces, and other resources permitted by that user’s teams and permissions.
 
-### Organizational data sources
+### Shared data sources
 
-- Organizational data sources can be created only by Olly admins.
-- An admin can decide whether an organizational data source is:
+- Shared data sources can be created only by Olly admins.
+- An admin can decide whether an shared data source is:
     - Available to all organization members, or
     - Available only to selected members.
-- To create an organizational data source, an admin either:
+- To create an shared data source, an admin either:
     - Provides a Coralogix team API key, or
     - Creates the data source using an access token obtained via login with Coralogix.
-- Members who are granted access to an organizational data source can use it as a data source for Olly to run on and generate answers.
-- Members will have access only to the data permitted by the team API key or access token the admin used to create the organizational data source. Olly does not gain broader access than that key or token allows.
-- Admins can change which members have access to an organizational data source at any time.
+- Members who are granted access to an shared data source can use it as a data source for Olly to run on and generate answers.
+- Members will have access only to the data permitted by the team API key or access token the admin used to create the shared data source. Olly does not gain broader access than that key or token allows.
+- Admins can change which members have access to an shared data source at any time.
 
 ### Access control behavior
 

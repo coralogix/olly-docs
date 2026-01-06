@@ -15,17 +15,17 @@ When you sign in with Coralogix, the region is determined by your Coralogix doma
 After you sign in:
 
 1. You can create a data source:
-    - A personal data source may be created with a Coralogix access token or personal API key.
-    - An organizational data source may be created with a team API key.
+    - A private data source may be created with a Coralogix access token or personal API key.
+    - A shared data source may be created with a team API key.
 2. You select one or more relevant Coralogix teams from that region.
-3. You create either a personal or an organizational data source, depending on your Olly role and the sharing settings you choose.
+3. You create either a private or a shared data source, depending on your Olly role and the sharing settings you choose.
 
 ### Manual sign-in (Gmail)
 
 When you sign in manually:
 
 1. You sign in to Olly with Gmail. Olly uses the default region that is configured for your Olly organization.
-2. You can create personal or organizational data sources only by pasting an API key (personal or team, respectively).
+2. You can create private or shared data sources only by pasting an API key (personal or team, respectively).
 3. The API key you use must belong to a Coralogix team in the same region as your Olly organization. If the regions do not match, data source creation fails.
 
 For data source creation, this means:
@@ -47,16 +47,16 @@ Olly controls access to Coralogix data through data sources. Every question runs
 
 ## Types of data sources
 
-Each data source can be personal or organizational (shared).
+Each data source can be private or shared.
 
-### Personal data sources
+### Private data sources
 
 - Visible and usable only by you (the creator).
 - Use your existing Coralogix permissions and policies.
 - Ideal if you want to ask Olly about your own Coralogix data without exposing it to others.
 - Can be created by any user, subject to the sign-in method and API keys they have.
 
-### Organizational data sources
+### Shared data sources
 
 - Created and managed by organization admins.
 - Mirror the permissions and policies associated with the Coralogix API key that the admin used when creating the data source.
@@ -64,7 +64,7 @@ Each data source can be personal or organizational (shared).
     - Everyone in the organization, or
     - Specific users and/or specific integrations (for example, Slack).
 
-Because organizational data sources mirror the creator’s Coralogix permissions, any data available to the creator becomes available to every user or integration that has access to that data source.
+Because shared data sources mirror the creator’s Coralogix permissions, any data available to the creator becomes available to every user or integration that has access to that data source.
 
 ## Selecting data sources when you chat
 
@@ -92,8 +92,8 @@ From **Settings → Data sources**:
     - Rename it.
     - Update sharing settings.
     - Re-authenticate (for example, rotate the API key).
-- Admins can update or delete organizational data sources.
-- Users can manage their own personal data sources.
+- Admins can update or delete shared data sources.
+- Users can manage their own private data sources.
 
 Deleting a data source:
 
@@ -106,7 +106,7 @@ Olly’s [Slack app](https://olly.mintlify.app/content/olly-slack-integration) l
 
 Currently:
 
-- Each Olly organization can connect a Slack workspace to one organizational Coralogix data source.
+- Each Olly organization can connect a Slack workspace to one shared Coralogix data source.
 - All queries from Slack use that data source.
 
-To set up a Slack organizational data source, visit the [Slack Integration](https://olly.mintlify.app/content/olly-slack-integration) page.
+To set up a Slack shared data source, visit the [Slack Integration](https://olly.mintlify.app/content/olly-slack-integration) page.
