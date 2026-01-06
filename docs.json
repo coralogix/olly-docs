@@ -95,7 +95,7 @@
   "$schema": "https://mintlify.com/docs.json",
   "favicon": "/favicon.svg",
   "logo": {
-    "dark": "/logo/coralogix.svg",
+    "dark": "/logo/coralogix-white.svg",
     "light": "/logo/coralogix.svg"
   }
 }
