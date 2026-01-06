@@ -93,9 +93,9 @@
   "name": "Coralogix Developer Docs",
   "theme": "mint",
   "$schema": "https://mintlify.com/docs.json",
-  "favicon": "/favicon.svg",
+  "favicon": "/olly-mark.svg",
   "logo": {
-    "dark": "/logo/coralogix-white.svg",
-    "light": "/logo/coralogix.svg"
+    "dark": "/logo/Olly-Light.svg",
+    "light": "/logo/Olly-Dark.svg"
   }
 }
