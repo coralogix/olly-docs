@@ -22,13 +22,25 @@ On the sign-in screen, choose one of the available options:
 Use this option when you want to sign in using your Coralogix identity and context.
 
 1. Select `Continue with Coralogix`.
-2. Complete the Coralogix sign-in flow.
-3. Return to Olly.
+2. Select your organization's region.
+3. Complete the authorization request by choosing your Coralogix account to sign in and selecting **Allow access**.
+4. Return to Olly.
 
-If you have access to multiple organizations, you’ll be prompted to choose which organization to enter.
+**Note:**
 
-Coralogix also affects which region Olly opens.
+- If you have access to multiple organizations, you’ll be prompted to choose which organization to enter.
 
+- Coralogix also affects which region Olly opens.
+
+#### What happens when you select Allow access
+
+When you select **Allow access**, you authorize Olly to securely connect to your Coralogix account using [OAuth](https://coralogix.com/docs/user-guides/account-management/user-management/oauth/). This means that:
+
+1. **An access token is issued**: Coralogix grants Olly a secure access token that represents your approval.
+2. **Scope is defined**: The access token includes the teams and environments you allowed Olly to access.
+3. **Data sources can be added**: If your team is [AI-enabled](https://docs.olly.new/content/olly-enable-in-cx#enable-olly-for-your-team), Olly uses this access token when adding a data source via the Coralogix tab, limited to the token’s scope.
+
+![Allow access](./images/allow-access.png)
 
 ### Continue with Google
 
