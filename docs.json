@@ -65,6 +65,12 @@
               "content/olly-release-notes-oct-2025",
               "content/olly-release-notes-nov-2025"
             ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "content/olly-integration/olly-integration"
+            ]
           }
         ]
       }
