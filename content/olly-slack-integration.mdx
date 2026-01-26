@@ -18,26 +18,17 @@ With Olly available in channels and DMs, your team can access intelligent answer
 
 ![Slack integration overview](./images/slack_integration_example_chat.png)
 
-## Requirements
+## Setup requirements
 
-To install the Olly Slack integration and ensure it works smoothly, make sure the following requirements are met:
+To setup the Olly Slack integration, make sure the following requirements are met:
 
 - **You have Olly organization admin permissions**: Only organization admins can install and manage the Slack integration.
 
-- **You have an Olly account**: Slack messages are linked to individual Olly users. If you don’t have an account yet, Olly will ask you to sign up.
-
 - **You use a shared Coralogix data source**: Slack can only use shared data sources.
-
-- **You’re part of the Olly organization connected to this Slack workspace**: If you’re in Slack but not in the connected Olly organization, Olly won’t be able to answer your questions.
-Each Slack workspace can be connected to only one Olly organization at a time. 
 
 - **You connect only one Olly organization per Slack workspace**: A Slack workspace can be connected to only one Olly organization at a time. If an Olly integration already exists in that workspace, you can’t connect another Olly organization from the same region.
 
-- **You have available tokens**: Olly checks your personal token quota before answering:
-
-    - If you have available tokens, Olly responds normally.
-    - If your tokens run out during the response, Olly will let you know and still provide a full answer.
-    - If you reach your token limit, Olly will let you know and prompt you to contact your admin to increase your quota.
+- **You use the correct region-specific Olly app and handle**: Add the Olly app to channels using `/invite @Olly-<region>` (for example, `/invite @Olly-EU2`) and always mention Olly using the matching region-specific handle.
 
 ## How to install
 
@@ -52,10 +43,24 @@ Once connected, Olly answers using the selected data source.
 You can change the Slack data source later. The new selection applies to future questions; past messages are unaffected.
 Slack uses one Coralogix data source at a time.
 
+## Usage requirements
+
+To use Olly in Slack without interruptions, make sure the following requirements are met:
+
+- **You have an Olly account**: Slack messages are linked to individual Olly users. If you don’t have an account yet, Olly will ask you to sign up.
+
+- **You’re part of the Olly organization connected to this Slack workspace**: If you’re in Slack but not in the connected Olly organization, Olly won’t be able to answer your questions.
+Each Slack workspace can be connected to only one Olly organization at a time. 
+
+- **You have available tokens**: Olly checks your personal token quota before answering:
+
+    - If you have available tokens, Olly responds normally.
+    - If your tokens run out during the response, Olly will let you know and still provide a full answer.
+    - If you reach your token limit, Olly will let you know and prompt you to contact your admin to increase your quota.
+
 
 ## How it works
 
-- Add the Olly app to the target channel using `/invite @Olly-<region>` (e.g., `/invite @Olly-EU2`) or send a message directly to the app as a DM.  
 - In any public or private channel, or in a DM with your Olly app, mention your region-specific handle with a clear prompt:  
   - `@Olly-EU2 show P95 latency for auth-service (last 24h)`  
   - `@Olly-EU2 summarize the 500s spike after the latest deploy`
