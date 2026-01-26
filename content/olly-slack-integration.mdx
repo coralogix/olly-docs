@@ -11,19 +11,24 @@ With Olly available in channels and DMs, your team can access intelligent answer
 
 ## Why integrate?
 
-- Communicate directly with Olly in channels or DMs using your region handle (e.g., `@Olly-EU2`)
-- Receive threaded responses from Olly to keep conversations organized
-- Get links from Slack back to Olly artifacts for deeper exploration
-- Streamline collaboration by turning chat requests into tracked insights and actions
+- Communicate directly with Olly in channels or DMs using your region handle (e.g., `@Olly-EU2`).
+- Receive threaded responses from Olly to keep conversations organized.
+- Get links from Slack back to Olly artifacts for deeper exploration.
+- Streamline collaboration by turning chat requests into tracked insights and actions.
 
 ![Slack integration overview](./images/slack_integration_example_chat.png)
 
-## Requirements
+## Setup requirements
 
-- An organiztional Coralogix data source.
-- You must be an **Olly organization admin** to install  
-- Add the Olly app to the target channel using `/invite @Olly-<region>` (e.g., `/invite @Olly-EU2`) or send a message directly to the app as a DM  
-- Use your **region-specific tag** when mentioning Olly (e.g., `@Olly-EU2`)
+To setup the Olly Slack integration, make sure the following requirements are met:
+
+- **You have Olly organization admin permissions**: Only organization admins can install and manage the Slack integration.
+
+- **You use a shared Coralogix data source**: Slack can only use shared data sources.
+
+- **You connect only one Olly organization per Slack workspace**: A Slack workspace can be connected to only one Olly organization at a time. If an Olly integration already exists in that workspace, you can’t connect another Olly organization from the same region.
+
+- **You use the correct region-specific Olly app and handle**: Add the Olly app to channels using `/invite @Olly-<region>` (for example, `/invite @Olly-EU2`) and always mention Olly using the matching region-specific handle.
 
 ## How to install
 
@@ -31,12 +36,27 @@ With Olly available in channels and DMs, your team can access intelligent answer
 2. Select **Connect Slack** and follow the Slack OAuth flow.
 3. When prompted, choose which shared data source Slack should use. **Only shared data sources can be exposed to Slack**.
 4. Save your changes.
-Once connected Olly answers using the selected data source.
+Once connected, Olly answers using the selected data source.
 
 ![Connect Slack](./images/connect-slack.png)
 
 You can change the Slack data source later. The new selection applies to future questions; past messages are unaffected.
 Slack uses one Coralogix data source at a time.
+
+## Usage requirements
+
+To use Olly in Slack without interruptions, make sure the following requirements are met:
+
+- **You have an Olly account**: Slack messages are linked to individual Olly users. If you don’t have an account yet, Olly will ask you to sign up.
+
+- **You’re part of the Olly organization connected to this Slack workspace**: If you’re in Slack but not in the connected Olly organization, Olly won’t be able to answer your questions.
+Each Slack workspace can be connected to only one Olly organization at a time. 
+
+- **You have available tokens**: Olly checks your personal token quota before answering:
+
+    - If you have available tokens, Olly responds normally.
+    - If your tokens run out during the response, Olly will let you know and still provide a full answer.
+    - If you reach your token limit, Olly will let you know and prompt you to contact your admin to increase your quota.
 
 
 ## How it works
@@ -44,10 +64,8 @@ Slack uses one Coralogix data source at a time.
 - In any public or private channel, or in a DM with your Olly app, mention your region-specific handle with a clear prompt:  
   - `@Olly-EU2 show P95 latency for auth-service (last 24h)`  
   - `@Olly-EU2 summarize the 500s spike after the latest deploy`
-- Olly replies **in a thread** to keep conversations tidy
-- Continue the conversation with Olly in the thread using the `@Olly-<region>` handle
-- Replies include links to related **artifacts in Olly** for deeper analysis  
-- Slack thread content is **not mirrored** as chat in Olly — only artifacts are accessible
-
-**Note:** Each Slack workspace can be connected to only **one Olly organization** at a time. 
-It's not possible to connect another Olly organization from the same region to a Slack workspace, once an integration to Olly already exists there.
+- When you send a message, Olly identifies you using your Slack user and links the request to your Olly account in the organization connected to the Slack workspace.
+- Olly replies **in a thread** to keep conversations tidy.
+- Continue the conversation with Olly in the thread using the `@Olly-<region>` handle.
+- Replies include links to related **artifacts in Olly** for deeper analysis.
+- Slack thread content is **not mirrored** as chat in Olly — only artifacts are accessible.
