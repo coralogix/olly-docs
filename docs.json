@@ -35,7 +35,8 @@
             "group": "⭐ Features",
             "pages": [
               "content/olly-user-rules",
-              "content/olly-fast-focus-modes"
+              "content/olly-fast-focus-modes",
+              "content/olly-model-selection"
             
             ]
           },
