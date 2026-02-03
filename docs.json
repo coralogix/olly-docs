@@ -36,7 +36,8 @@
             "pages": [
               "content/olly-user-rules",
               "content/olly-fast-focus-modes",
-              "content/olly-model-selection"
+              "content/olly-model-selection",
+              "content/olly-dynamic-tables-csv-export"
             
             ]
           },
@@ -61,12 +62,8 @@
             ]
           },
           {
-            "group": "⏩ Release Notes",
-            "pages": [
-              "content/olly-release-notes-dec-2025",
-              "content/olly-release-notes-nov-2025",
-              "content/olly-release-notes-oct-2025"
-            ]
+            "group": "⏩ Changelog",
+            "pages": ["content/changelog"]
           }
         ]
       }
