@@ -41,6 +41,15 @@
             
             ]
           },
+                    {
+            "group": "🛠️ Admin Tools",
+            "pages": [
+              "content/olly-seat-management",
+              "content/olly-organization-management",
+              "content/olly-members-management"
+            
+            ]
+          },
           {
             "group": "⚙️ Configuration",
             "pages": [
