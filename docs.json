@@ -14,7 +14,9 @@
             "pages": [
               "content/olly-intro",
               "content/olly-what-can-do",
-              "content/olly-how-it-works"
+              "content/olly-how-it-works",
+              "content/olly-orgs-and-regions"
+
             ]
           },
           
@@ -48,13 +50,6 @@
               "content/olly-organization-management",
               "content/olly-members-management"
             
-            ]
-          },
-          {
-            "group": "⚙️ Configuration",
-            "pages": [
-              "content/olly-orgs-and-regions",
-              "content/olly-permissions-reqs"
             ]
           },
           {
