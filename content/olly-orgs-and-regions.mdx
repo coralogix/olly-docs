@@ -135,3 +135,22 @@ For the full set of options (API key vs Coralogix sign-in, private vs shared, sh
 
 - If you need to connect Coralogix data, create a data source from `Settings → Data sources`.
 - If you landed in the wrong region, switch regions from the region selector in the header or user menu.
+
+## FAQs
+
+<Accordion title="How do I sign in to Olly? Do I have SSO?">
+    Any user can login to Olly with their Coralogix user.
+</Accordion>
+
+<Accordion title="How access control works on Olly? Is there special RBAC?">
+    Olly users inherit their Coralogix access. Each user can access only data that is available to them in Coralogix.
+</Accordion>
+
+<Accordion title="Does Olly support regions and teams?">
+    Yes - Olly supports both regions and teams. Each customer has an **Olly Organization**. Within an organization, they have all their Coralogix teams, and regions.
+</Accordion>
+
+<Accordion title="Can I access multiple teams within a single prompt?">
+    Yes - when you send a message to Olly, it will use any team that’s accessible to answer and fulfil the task.
+    ![Olly orgs](./images/olly-org.webp)
+</Accordion>
