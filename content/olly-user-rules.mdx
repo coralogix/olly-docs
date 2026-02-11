@@ -1,12 +1,8 @@
 ---
-title: "User Rules"
+title: "Rules"
 ---
 
-User rules allow you to customize how Olly responds to you by defining personal preferences in plain text. These rules give Olly additional context about your environment, workflows, and response style, so it can better align with how you work and deliver more accurate, consistent insights across sessions.
-
-## What are user rules?
-
-User rules are short, user-defined instructions that Olly applies automatically when generating responses.
+Rules allow you to customize how Olly responds to you by defining personal preferences in plain text. They give Olly additional context about your environment, workflows, and response style, so it can better align with how you work and deliver more accurate, consistent insights across sessions.
 
 They can be used to:
 
@@ -14,44 +10,98 @@ They can be used to:
 - Provide contextual constraints for investigations or analysis.
 - Enforce consistent assumptions across conversations.
 
-**Example rules:**
+Rules ensure your preferences are always applied without needing to repeat them in every conversation.
+
+## Rule types
+
+Olly supports two types of rules:
+
+- **Organization rules**: Apply across the entire organization.
+- **User rules**: Apply only to your personal profile.
+
+### Organization rules
+
+Organization rules define guidance that applies to all users in the organization.
+
+Examples:
+- “Always prioritize production data over staging.”
+- “Use `request_id` as the primary correlation key.”
+- “Assume availability SLO is higher priority than latency SLO.”
+
+**How organization rules work**:
+
+- Only **organization admins** can create and edit organization rules.
+- Once created, organization rules are **automatically enabled** and stored for all members inside an organization.
+- Admins can **disable** a rule without deleting it.
+  - When disabled, Olly ignores the rule.
+  - The rule remains visible in the management screen for future use.
+
+### User rules
+
+User rules are short, user-defined instructions that Olly applies automatically when generating responses.
+
+Examples:
 
 - “The label ‘application’ in my logs refers to the customer name.”
 - “When I ask about ‘chats’, use custom metrics.”
 - “Only analyze production environment data.”
 - “Highlight error spikes over latency regressions.”
 
-## How user rules work
+**How user rules work**:
 
-- Rules are written in plain text.
-- Each rule is stored per user.
-- Rules persist across sessions.
-- Olly automatically takes them into account in every interaction.
+- Stored per user profile.
+- Automatically enabled once created.
+- Can be enabled or disabled by the user at any time without affecting other users.
+- Disabled rules are ignored but remain saved.
 
-This ensures your preferences are always applied without needing to repeat them in every conversation.
+### Rule precedence
 
-## Creating a user rule
+When generating a response, Olly applies rules in the following order: **Organization rules → User rules**.
 
-To set up a user rule:
+All applicable rules are merged.
 
-1. Go to **Settings → Account → User Rules**.
-2. Select **+ New rule**.
-3. Type your rule in plain text.
-4. Select **Create**.
+If guidance conflicts:
+- Organization rules take precedence.
+- User rules are applied afterward, unless they contradict organization-level guidance.
 
-![Create new rule](./images/user-rules-olly.png)
+This ensures consistent organization-wide standards while still allowing personal customization.
 
-Your rule will now appear in the **User Rules** page.
+## Creating a rule
+
+To set up a rule:
+
+1. Go to **Settings → Rules**.
+2. Select **+ New rule** under either:
+   - User rules  
+   - Organization rules (admins only)
+3. Enter your rule in plain text.
+4. Select **Create**
+
+Your rule will now appear in the **Rules** screen.
+
+## Enabling and disabling rules
+
+Rules can be toggled on or off directly from the **Rules** screen.
+
+- **Enabled**: Olly considers the rule in all responses according to the precedence.
+- **Disabled**: Olly ignores the rule, but it remains saved.
+
+This allows temporary adjustments without deleting guidance permanently.
+
+- Users can enable/disable **their own User rules**.
+- Admins can enable/disable **Organization rules**.
 
 ## Editing or deleting rules
 
-- You can edit an existing rule at any time from the **User Rules** page.
-- You can also delete a rule if it’s no longer relevant.
-- Changes take effect immediately and apply to all subsequent interactions.
+To edit or delete the rule, navigate to the rule of interest and select **Actions**.
+
+- Rules can be edited at any time.
+- Rules can be deleted if no longer relevant.
+- Changes take effect immediately for all future interactions.
 
 ## Guardrails & validation
 
-To keep Olly safe and reliable, all user rules are validated before being saved.
+To keep Olly safe and reliable, all rules are validated before being saved.
 
 Each rule is automatically checked for:
 
