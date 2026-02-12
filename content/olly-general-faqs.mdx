@@ -35,38 +35,10 @@ Find answers to the most frequently asked questions about Olly.
     Olly behaves like a Senior Production Engineer and investigates, reasons, and takes action, not just queries data.
 </Accordion>
 
-<Accordion title="Why Olly is a separate product and doesn’t reside within Coralogix UI?">
-    Olly is separate because it delivers something observability platforms can’t: **a clean, AI-native experience** focused entirely on reliability outcomes. By keeping it independent, we remove the noise and complexity of traditional observability tools - giving you faster detection, clearer answers, and much lower MTTR with almost zero setup.
-
-    By building Olly separately, customers get three huge advantages:
-
-    1. You get answers immediately - not dashboards to configure.
-    2. No setup, no tuning, no maintenance.
-    3. Much faster time-to-value.
-</Accordion>
-
-## Integration & platform capabilities
-
-<Accordion title="Does Olly have an API? How does Olly integrate with Coralogix?">
-    Olly does not currently offer a public API.
-    Olly is natively integrated with Coralogix. There’s no separate backend service or data onboarding process required:
-
-        - Customers don’t need to ingest data into Olly.
-        - Olly works directly on top of existing Coralogix data and infrastructure.
-</Accordion>
-
-
-<Accordion title="Is RUM data supported in Olly??">
-    RUM sessions are not visible to Olly yet.
-    However, Olly **does have access to RUM logs**, which means it can still analyze RUM-related data and provide insights for many RUM-focused questions.
-    Support for full RUM session visibility is not available at the moment, and there’s no confirmed timeline yet — but this is an area we’re actively aware of.
-    If your use case relies on analyzing RUM logs (rather than sessions), Olly should already be able to help.
-</Accordion>
-
 ## Token usage & limits
 
 <Accordion title="Can I monitor my token usage?">
-    Yes - You can monitor your token usage by navigating to your profile, then **Usage**.
+    Yes - you can monitor your token usage by navigating to your profile, then **Usage**.
     Usage is tracked per your and resets monthly.
 </Accordion>
 
@@ -87,7 +59,7 @@ Find answers to the most frequently asked questions about Olly.
 <Accordion title="How are tokens calculated in Olly?">
     Olly follows the same token model used by LLMs such as OpenAI and Claude.
     When you ask a question, Olly may run multiple agents behind the scenes to understand the request, retrieve relevant data, and generate an accurate answer. Because of this, more complex questions consume more tokens.
-    As a rule of thumb, a token roughly represents a word. To keep things simple and transparent, Olly displays input and output tokens together as a single “Token” unit in the UI.
+    As a rule of thumb, a token roughly represents 4 characters. To keep things simple and transparent, Olly displays input and output tokens together as a single “Token” unit in the UI.
 </Accordion>
 
 <Accordion title="Will I be notified when I reach my token limit?">

@@ -142,15 +142,17 @@ For the full set of options (API key vs Coralogix sign-in, private vs shared, sh
     Any user can login to Olly with their Coralogix user.
 </Accordion>
 
-<Accordion title="How access control works on Olly? Is there special RBAC?">
-    Olly users inherit their Coralogix access. Each user can access only data that is available to them in Coralogix.
+<Accordion title="Does Olly support regions and teams?">
+    Yes - an **Olly Organization** represents your account (or domain).
+    Within your account:
+    - You can operate across multiple **regions**.
+    - In each region, users can connect one or more **Coralogix teams as data sources**.
+
+    ![Olly orgs](./images/olly-org.png)
 </Accordion>
 
-<Accordion title="Does Olly support regions and teams?">
-    Yes - Olly supports both regions and teams. Each customer has an **Olly Organization**. Within an organization, they have all their Coralogix teams, and regions.
-</Accordion>
 
 <Accordion title="Can I access multiple teams within a single prompt?">
-    Yes - when you send a message to Olly, it will use any team that’s accessible to answer and fulfil the task.
-    ![Olly orgs](./images/olly-org.png)
+    No - each prompt runs against a single connected team (data source).
+    However, within the same chat, you can switch between teams — as long as they are in the same region — and continue the conversation using a different data source for the next prompt.
 </Accordion>

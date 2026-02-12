@@ -4,6 +4,11 @@ title: "FAQs"
 
 Find answers to the most frequently asked questions about data sources.
 
+<Accordion title="How access control works on Olly? Is there special RBAC?">
+    Olly does not introduce a separate RBAC model.
+    Access in Olly is determined by the data source that is connected to it. When a data source is added (via API key or SSO), Olly operates according to the data scopes and permissions associated with that connection.
+</Accordion>
+
 <Accordion title="I just integrated Olly. How can I start asking it questions?">
     You must connect at least one data source for Olly to query. When a new Coralogix team is connected as a data source, Olly begins learning its data—this process can take up to 24 hours. Once complete, Olly’s accuracy improves dramatically.
 </Accordion>
