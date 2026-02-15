@@ -49,40 +49,53 @@ Olly controls access to Coralogix data through data sources. Every question runs
 
 Each data source can be private or shared.
 
-### Private data sources
+<Columns cols={2}>
+  <Card title="Private">
+    - Visible and usable only by you (the creator).
+    - Use your existing Coralogix permissions and policies.
+    - Ideal if you want to ask Olly about your own Coralogix data without exposing it to others.
+    - Can be created by any user, subject to the sign-in method and API keys they have.
+  </Card>
+  <Card title="Shared">
+    - Created and managed by organization admins.
+    - Mirror the permissions and policies associated with the Coralogix API key that the admin used when creating the data source.
+    - Can be shared with:
+        - Everyone in the organization, or
+        - Specific users and/or specific integrations (for example, Slack).
 
-- Visible and usable only by you (the creator).
-- Use your existing Coralogix permissions and policies.
-- Ideal if you want to ask Olly about your own Coralogix data without exposing it to others.
-- Can be created by any user, subject to the sign-in method and API keys they have.
+    <Info>Because shared data sources mirror the creator’s Coralogix permissions, any data available to the creator becomes available to every user or integration that has access to that data source.</Info>
+  </Card>
+</Columns>
 
-### Shared data sources
-
-- Created and managed by organization admins.
-- Mirror the permissions and policies associated with the Coralogix API key that the admin used when creating the data source.
-- Can be shared with:
-    - Everyone in the organization, or
-    - Specific users and/or specific integrations (for example, Slack).
-
-Because shared data sources mirror the creator’s Coralogix permissions, any data available to the creator becomes available to every user or integration that has access to that data source.
 
 ## Selecting data sources when you chat
 
 When you ask Olly a question, you can control which data it uses.
 
-- In the chat UI, use the data source selector in the message box.
+In the chat UI, use the data source selector inside the message box. Olly can use one Coralogix data source at a time for each query.
 
-- Olly can use one Coralogix data source at a time for each query.
+What gets selected by default:
 
-- If you do not explicitly choose a data source, Olly uses your last selection.
+- **If you connected one data source (shared or private)**: That data source is selected automatically in the chat without the blue dot.
 
-![Selecting data source](./images/select-data-source.png)
+- **If you connected multiple data sources**: Olly automatically selects the first data source you marked as the default/primary one.
+You’ll also see the blue dot animation and the guided panel prompting you to choose.
+
+    ![Selecting data source](./images/select-data-source.png)
+
+- **If you don’t explicitly choose a data source**: Olly uses your last selection.
+
+First time you enter an organization:
+
+- **If the organization has at least one data source shared with you**: Olly selects the first data source in the list and shows the blue dot indication (same behavior as when multiple data sources exist and one is auto-selected).
+
+- **If the organization has exactly one shared data source**: Olly selects it automatically and does not show the blue dot.
 
 Olly validates that:
 
 - The region of the Coralogix team matches the region of your Olly organization.
 - The API key is valid.
-- The [required permissions](https://olly.mintlify.app/content/olly-orgs-and-regions) are present.
+- The [required permissions](https://docs.olly.new/content/olly-cx-data-sources#coralogix-permissions-requirements) are present.
 
 If anything is missing or mismatched, including the region, you will see an error.
 
