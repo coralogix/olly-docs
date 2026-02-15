@@ -135,3 +135,24 @@ For the full set of options (API key vs Coralogix sign-in, private vs shared, sh
 
 - If you need to connect Coralogix data, create a data source from `Settings → Data sources`.
 - If you landed in the wrong region, switch regions from the region selector in the header or user menu.
+
+## FAQs
+
+<Accordion title="How do I sign in to Olly? Do I have SSO?">
+    Any user can login to Olly with their Coralogix user.
+</Accordion>
+
+<Accordion title="Does Olly support regions and teams?">
+    Yes - an **Olly organization** represents your account (or domain).
+    Within your account:
+    - You can operate across multiple **regions**.
+    - In each region, users can connect one or more **Coralogix teams as data sources**.
+
+    ![Olly orgs](./images/olly-org.png)
+</Accordion>
+
+
+<Accordion title="Can I access multiple teams within a single prompt?">
+    No - each prompt runs against a single connected team (data source).
+    However, within the same chat, you can switch between teams — as long as they are in the same region — and continue the conversation using a different data source for the next prompt.
+</Accordion>

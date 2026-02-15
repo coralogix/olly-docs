@@ -1,0 +1,67 @@
+---
+title: "FAQs"
+---
+
+Find answers to the most frequently asked questions about Olly.
+
+## Product positioning & architecture
+
+
+<Accordion title="What is the difference between Olly and Coralogix AI Center?">
+    Olly is a standalone offering of AI across all Coralogix’s capabilities - logs, metrics traces. The AI Center, on the other hand, is a place to monitor and track AI applications.
+</Accordion>
+
+<Accordion title="What is the difference between Olly and Coralogix MCP?">
+    MCP is access to Coralogix data. Olly is intelligence. While MCP lets AI tools read observability data, Olly uses that data to actually run production investigations.
+    
+    **What Coralogix MCP is**:
+
+    - MCP is a way to expose Coralogix API to AI systems like Cursor.
+    - Coralogix MCP exposes logs, metrics, traces, alerts.
+    - It’s an integration layer, not a product.
+
+    **What Olly is**:
+
+    Olly sits on top of the Coralogix Observability Platform and turns data into action. It is an **Agentic Observability System** made of:
+
+        - **Knowledge**: Understands your services, history, incidents, deployments - like an engineer who knows your production.
+            
+        - **Multi-agents**: Specialized agents (logs, traces, metrics, correlation, security, engineering) that work together on any task and prompt.
+            
+        - **Autonomy**: Autonomously decide on how to navigate and solve any challenge.
+            
+        - **UX & UI**: Olly’s UI is specially built for Observability use-cases - support any insight with evidence, generate relevant charts and recommend actions - built for humans in production.
+        
+    Olly behaves like a Senior Production Engineer and investigates, reasons, and takes action, not just queries data.
+</Accordion>
+
+## Token usage & limits
+
+<Accordion title="Can I monitor my token usage?">
+    Yes - you can monitor your token usage by navigating to your profile, then **Usage**.
+    Usage is tracked per your and resets monthly.
+</Accordion>
+
+<Accordion title="Can a few questions consume a large number of Olly tokens?">
+    This can absolutely happen.
+
+    Olly’s token usage is not based on the number of questions, but on the total amount of data and context processed to answer them.
+
+    Even a small number of questions can consume a high number of tokens if they require deeper analysis. Each request may include:
+
+        - **Conversation context**: Olly sends the full relevant conversation history to keep answers accurate and consistent.
+        - **Retrieved supporting data**: Olly may pull in large volumes of logs, traces, metrics, alerts, or other data to properly analyze your question.
+        - **Model reasoning and output**: Tokens are used not only for the final answer, but also for intermediate reasoning and processing steps.
+
+    Because of this, a question that takes longer to analyze or touches a broader dataset can consume significantly more tokens than a simple question — even if you only asked a few.
+</Accordion>
+
+<Accordion title="How are tokens calculated in Olly?">
+    Olly follows the same token model used by LLMs such as OpenAI and Claude.
+    When you ask a question, Olly may run multiple agents behind the scenes to understand the request, retrieve relevant data, and generate an accurate answer. Because of this, more complex questions consume more tokens.
+    As a rule of thumb, a token roughly represents 4 characters. To keep things simple and transparent, Olly displays input and output tokens together as a single “Token” unit in the UI.
+</Accordion>
+
+<Accordion title="Will I be notified when I reach my token limit?">
+    When a user reaches their token limit (based on their seat tier), Olly blocks further usage. This state is clearly shown in the UI
+</Accordion>

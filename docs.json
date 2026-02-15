@@ -15,7 +15,8 @@
               "content/olly-intro",
               "content/olly-what-can-do",
               "content/olly-how-it-works",
-              "content/olly-orgs-and-regions"
+              "content/olly-orgs-and-regions",
+              "content/olly-general-faqs"
 
             ]
           },
@@ -24,7 +25,8 @@
             "group": "🌐 Data Sources",
             "pages": [
               "content/olly-data-sources-intro",
-              "content/olly-cx-data-sources"
+              "content/olly-cx-data-sources",
+              "content/olly-data-sources-faqs"
 
             ]
           },
@@ -39,7 +41,8 @@
               "content/olly-user-rules",
               "content/olly-fast-focus-modes",
               "content/olly-model-selection",
-              "content/olly-dynamic-tables-csv-export"
+              "content/olly-dynamic-tables-csv-export",
+              "content/olly-features-faqs"
             
             ]
           },
@@ -48,7 +51,8 @@
             "pages": [
               "content/olly-seat-management",
               "content/olly-organization-management",
-              "content/olly-members-management"
+              "content/olly-members-management",
+              "content/olly-admin-faqs"
             
             ]
           },
