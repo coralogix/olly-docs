@@ -1,5 +1,5 @@
 ---
-title: "Coralogix Data Sources"
+title: "Create Coralogix Data Sources"
 ---
 
 Olly connects directly to your Coralogix data so it can answer questions about your systems.
@@ -7,29 +7,6 @@ Olly connects directly to your Coralogix data so it can answer questions about y
 Data sources define which Coralogix teams and environments Olly is allowed to use.
 
 To learn more about data sources, visit [data sources introduction](https://olly.mintlify.app/content/olly-data-sources-intro).
-
-## Types of data sources
-
-Each data source can be private or shared.
-
-### Private data sources
-
-- Visible and usable only by you (the creator).
-- Use your existing Coralogix permissions and policies.
-- Ideal if you want to ask Olly about your own Coralogix data without exposing it to others.
-- Can be created by any user, subject to the sign-in method and API keys they have.
-
-### Shared data sources
-
-- Created and managed by organization admins.
-- Mirror the permissions and policies associated with the Coralogix API key that the admin used when creating the data source.
-- Can be shared with:
-    - Everyone in the organization, or
-    - Specific users and/or specific integrations (for example, Slack).
-
-Because shared data sources mirror the creator’s Coralogix permissions, any data available to the creator becomes available to every user or integration that has access to that data source.
-
-![Data sources in Olly](./images/data-sources.png)
 
 ## Creating a private data source
 
@@ -53,8 +30,44 @@ Because shared data sources mirror the creator’s Coralogix permissions, any da
 5. Set sharing:
     - Everyone in the organization, or
     - Specific users (you can update this later)
-    - Optionally mark the data source as available for Slack (see below).
+    - Optionally mark the data source as available for Slack.
 6. Name the data source (for example, `Production`, `EU Prod`, `Shared Sandbox`) and select **Connect**.
+
+<Note>If you don’t have a data source yet, Olly may guide you with a one-time animation, a persistent banner above the chat, a tooltip from the data source icon, or a connect modal after sending a message — all leading to the same setup flow. ![Connect data source domain](./images/connect-data-source.png)</Note>
+
+## Selecting data sources when you chat
+
+When you ask Olly a question, you can control which data it uses.
+
+In the chat UI, use the data source selector inside the message box. Olly can use one Coralogix data source at a time for each query.
+
+What gets selected by default:
+
+- **If you connected one data source (shared or private)**: That data source is selected automatically in the chat without the <span style={{ color: "#2563eb", fontWeight: "bold" }}>blue dot</span> indicator.
+
+- **If you connected multiple data sources**: Olly automatically selects the first data source you marked as the default/primary one.
+A <span style={{ color: "#2563eb", fontWeight: "bold" }}>blue dot</span> indicator appears to highlight that a selection was made — you can change it anytime from the data source selector in the message box.
+
+    ![Selecting data source](./images/select-data-source.png)
+
+First time you enter an organization:
+
+- **If the organization has at least one data source shared with you**: Olly selects the first data source in the list and shows the <span style={{ color: "#2563eb", fontWeight: "bold" }}>blue dot</span> indicator (same behavior as when multiple data sources exist and one is auto-selected).
+
+- **If the organization has exactly one shared data source**: Olly selects it automatically and does not show the indicator.
+
+Olly validates that:
+
+- The region of the Coralogix team matches the region of your Olly organization.
+- The API key is valid.
+- The required permissions are present (see below).
+
+If anything is missing or mismatched, including the region, you will see an error.
+
+## Next steps
+
+Once you connect a data source, Olly starts building the knowledge base. You can immediately begin asking questions in the chat, switch between available data sources from the message box, or add additional private or shared sources as needed.
+For more information, visit our [FAQs page](https://docs.olly.new/content/olly-data-sources-faqs).
 
 ## Coralogix permissions requirements
 
@@ -63,29 +76,24 @@ The following permissions should be attached individually or as presets to your 
 To add or modify permissions for a user role, refer to our [Role-Based Permissions](https://coralogix.com/docs/user-guides/account-management/user-management/create-roles-and-permissions/) tutorial.
 
 Your Coralogix [API key](https://coralogix.com/docs/user-guides/account-management/api-keys/api-keys/) should have the following configurations:
-- `DataQuerying` role.
-- `APM` role - advanced permissions `Service Map`
-- `Incidents` role preset
-- `Alerts` role preset
-- `SLO` role preset
-- `Dashboards` role preset
 
-### APM
+<Accordion title="APM">
 
-| Permission | Description |
-| --- | --- |
-| `serverless:Read` | View Serverless Monitoring data. |
-| `service-catalog:ReadDimensionsConfig` | Not listed in the permissions list. |
-| `service-catalog:ReadSLIConfig` | Not listed in the permissions list. |
-| `service-catalog:UpdateDimensionsConfig` | Manage Service Catalog dimensions. |
-| `service-catalog:UpdateSLIConfig` | Manage Service Catalog SLIs. |
-| `service-map:Read` | View Service Map. |
-| `service-catalog:Read` | View Service Catalog data. |
-| `service-catalog:ReadApdexConfig` | Not listed in the permissions list. |
-| `service-catalog:UpdateApdexConfig` | Manage the Apdex configuration. |
-| `service-catalog:Update` | Manage Service Catalog services. |
+    | Permission | Description |
+    | --- | --- |
+    | `serverless:Read` | View Serverless Monitoring data. |
+    | `service-catalog:ReadDimensionsConfig` | Not listed in the permissions list. |
+    | `service-catalog:ReadSLIConfig` | Not listed in the permissions list. |
+    | `service-catalog:UpdateDimensionsConfig` | Manage Service Catalog dimensions. |
+    | `service-catalog:UpdateSLIConfig` | Manage Service Catalog SLIs. |
+    | `service-map:Read` | View Service Map. |
+    | `service-catalog:Read` | View Service Catalog data. |
+    | `service-catalog:ReadApdexConfig` | Not listed in the permissions list. |
+    | `service-catalog:UpdateApdexConfig` | Manage the Apdex configuration. |
+    | `service-catalog:Update` | Manage Service Catalog services. |
+</Accordion>
 
-### Dashboards
+<Accordion title="Dashboards">
 
 | Permission | Description |
 | --- | --- |
@@ -93,8 +101,9 @@ Your Coralogix [API key](https://coralogix.com/docs/user-guides/account-manageme
 | `team-dashboards:Update` | Manage public Custom Dashboards. |
 | `user-dashboards:Read` | View private Custom Dashboards. |
 | `user-dashboards:Update` | Manage private Custom Dashboards. |
+</Accordion>
 
-### DataQuerying
+<Accordion title="DataQuerying">
 
 | Permission | Description |
 | --- | --- |
@@ -106,8 +115,9 @@ Your Coralogix [API key](https://coralogix.com/docs/user-guides/account-manageme
 | `spans.data-api#high:ReadData` | Query frequent-search spans. |
 | `spans.data-api#low:ReadData` | Query Monitoring and Compliance spans. |
 | `profiles.cpu-profiles:Read` | View CPU profiling data. |
+</Accordion>
 
-### Incidents
+<Accordion title="Incidents">
 
 | Permission | Description |
 | --- | --- |
@@ -116,8 +126,9 @@ Your Coralogix [API key](https://coralogix.com/docs/user-guides/account-manageme
 | `incidents:Close` | Manually resolve events in triggered alerts. |
 | `incidents:Read` | View events in triggered alerts. |
 | `incidents:Snooze` | Snooze events in triggered alerts. |
+</Accordion>
 
-### SLOs
+<Accordion title="SLO">
 
 | Permission | Description |
 | --- | --- |
@@ -125,3 +136,4 @@ Your Coralogix [API key](https://coralogix.com/docs/user-guides/account-manageme
 | `slo-mgmt.alerts:UpdateConfig` | Manage SLO-based Alert Settings. |
 | `slo:ReadConfig` | View SLO Settings. |
 | `slo:UpdateConfig` | Manage SLO Settings. |
+</Accordion>
