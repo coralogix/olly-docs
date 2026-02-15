@@ -35,9 +35,38 @@ To learn more about data sources, visit [data sources introduction](https://olly
 
 <Note>If you don’t have a data source yet, Olly may guide you with a one-time animation, a persistent banner above the chat, a tooltip from the data source icon, or a connect modal after sending a message — all leading to the same setup flow. ![Connect data source domain](./images/connect-data-source.png)</Note>
 
+## Selecting data sources when you chat
+
+When you ask Olly a question, you can control which data it uses.
+
+In the chat UI, use the data source selector inside the message box. Olly can use one Coralogix data source at a time for each query.
+
+What gets selected by default:
+
+- **If you connected one data source (shared or private)**: That data source is selected automatically in the chat without the <span style={{ color: "#2563eb", fontWeight: "bold" }}>blue dot</span> indicator.
+
+- **If you connected multiple data sources**: Olly automatically selects the first data source you marked as the default/primary one.
+A <span style={{ color: "#2563eb", fontWeight: "bold" }}>blue dot</span> indicator appears to highlight that a selection was made — you can change it anytime from the data source selector in the message box.
+
+    ![Selecting data source](./images/select-data-source.png)
+
+First time you enter an organization:
+
+- **If the organization has at least one data source shared with you**: Olly selects the first data source in the list and shows the <span style={{ color: "#2563eb", fontWeight: "bold" }}>blue dot</span> indicator (same behavior as when multiple data sources exist and one is auto-selected).
+
+- **If the organization has exactly one shared data source**: Olly selects it automatically and does not show the indicator.
+
+Olly validates that:
+
+- The region of the Coralogix team matches the region of your Olly organization.
+- The API key is valid.
+- The required permissions are present (see below).
+
+If anything is missing or mismatched, including the region, you will see an error.
+
 ## Next steps
 
-Once you connect a data source, Olly starts learning from your data. You can immediately begin asking questions in the chat, switch between available data sources from the message box, or add additional private or shared sources as needed.
+Once you connect a data source, Olly starts building the knowledge base. You can immediately begin asking questions in the chat, switch between available data sources from the message box, or add additional private or shared sources as needed.
 For more information, visit our [FAQs page](https://docs.olly.new/content/olly-data-sources-faqs).
 
 ## Coralogix permissions requirements
@@ -47,12 +76,6 @@ The following permissions should be attached individually or as presets to your 
 To add or modify permissions for a user role, refer to our [Role-Based Permissions](https://coralogix.com/docs/user-guides/account-management/user-management/create-roles-and-permissions/) tutorial.
 
 Your Coralogix [API key](https://coralogix.com/docs/user-guides/account-management/api-keys/api-keys/) should have the following configurations:
-- `DataQuerying` role.
-- `APM` role - advanced permissions `Service Map`
-- `Incidents` role preset
-- `Alerts` role preset
-- `SLO` role preset
-- `Dashboards` role preset
 
 <Accordion title="APM">
 

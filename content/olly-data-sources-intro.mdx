@@ -67,38 +67,6 @@ Each data source can be private or shared.
   </Card>
 </Columns>
 
-
-## Selecting data sources when you chat
-
-When you ask Olly a question, you can control which data it uses.
-
-In the chat UI, use the data source selector inside the message box. Olly can use one Coralogix data source at a time for each query.
-
-What gets selected by default:
-
-- **If you connected one data source (shared or private)**: That data source is selected automatically in the chat without the blue dot.
-
-- **If you connected multiple data sources**: Olly automatically selects the first data source you marked as the default/primary one.
-You’ll also see the blue dot animation and the guided panel prompting you to choose.
-
-    ![Selecting data source](./images/select-data-source.png)
-
-- **If you don’t explicitly choose a data source**: Olly uses your last selection.
-
-First time you enter an organization:
-
-- **If the organization has at least one data source shared with you**: Olly selects the first data source in the list and shows the blue dot indication (same behavior as when multiple data sources exist and one is auto-selected).
-
-- **If the organization has exactly one shared data source**: Olly selects it automatically and does not show the blue dot.
-
-Olly validates that:
-
-- The region of the Coralogix team matches the region of your Olly organization.
-- The API key is valid.
-- The [required permissions](https://docs.olly.new/content/olly-cx-data-sources#coralogix-permissions-requirements) are present.
-
-If anything is missing or mismatched, including the region, you will see an error.
-
 ## Editing or deleting a data source
 
 From **Settings → Data sources**:
