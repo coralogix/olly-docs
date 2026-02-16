@@ -26,7 +26,6 @@
             "pages": [
               "content/olly-data-sources-intro",
               "content/olly-cx-data-sources",
-              "content/olly-github-data-sources",
               "content/olly-data-sources-faqs"
 
             ]
@@ -34,8 +33,7 @@
           {
             "group": "🧩 Integrations",
             "pages": [
-              "content/olly-slack-integration",
-              "content/olly-github-integration"           ]
+              "content/olly-slack-integration"           ]
           },
           {
             "group": "⭐ Features",
