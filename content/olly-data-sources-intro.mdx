@@ -37,11 +37,11 @@ For data source creation, this means:
 
 A data source tells Olly:
 
-- Where to look (for example, which Coralogix team)
-- How to authenticate (API key or OAuth)
-- Who is allowed to use it
+- Where to look (for example, which Coralogix team or a GitHub repository).
+- How to authenticate (API key or OAuth).
+- Who is allowed to use it.
 
-Today, the only data source type is Coralogix, which connects Olly to a single Coralogix team (the same team you use within the Coralogix UI).
+<Info>When creating a [Coralogix](https://docs.olly.new/content/olly-cx-data-sources) data source, Olly connects to a single Coralogix team (the same team you use within the Coralogix UI).</Info>
 
 Olly controls access to Coralogix data through data sources. Every question runs against one or more configured data sources that define which teams and telemetry Olly can query. 
 
@@ -93,3 +93,9 @@ Currently:
 - All queries from Slack use that data source.
 
 To set up a Slack shared data source, visit the [Slack Integration](https://olly.mintlify.app/content/olly-slack-integration) page.
+
+## GitHub integration and data sources
+
+The GitHub integration allows Olly to use code context when answering questions, running investigations, and performing root cause analysis. By connecting a GitHub repository as a data source, Olly can analyze relevant code and incorporate it into its responses to provide more accurate, targeted insights.
+
+To set up a GitHub personal data source, visit the [GitHub Data Sources](https://olly.mintlify.app/content/olly-github-data-sources) page.
