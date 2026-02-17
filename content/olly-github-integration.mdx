@@ -53,25 +53,27 @@ Installing the GitHub integration authorizes the Olly app in your GitHub organiz
 
 Admins can opt out (disconnect) the integration at any time by using the integration toggle.
 
-### Installing without GitHub admin permissions
+### Access behavior
 
-It is recommended that a GitHub organization admin perform the installation directly. However, you can still initiate the integration and request approval.
+**If you are not a GitHub organization admin**:
 
-If you do not have GitHub organization admin permissions:
+- The integration can still be created.
 
-1. Go to **Connections → Integrations → GitHub**.
-2. Toggle to **Connect**.
-3. You will be redirected to GitHub.
-4. Submit a request for approval for your GitHub organization admin.
-5. If you do not have sufficient permissions, GitHub will generate an installation request for your organization’s administrators to review and approve.
-6. A GitHub organization admin must approve the request.
+- You will have immediate access to the public repositories you've selected in the GitHub organization.
 
-After approval:
+- Access to private repositories requires approval from a GitHub organization admin.
 
-- The Olly GitHub integration is installed in the organization.
-- Users in the Olly organization can create GitHub data sources as usual.
+Until a GitHub organization admin approves the installation request, private repositories can't be chosen in the chat.
 
-Until a GitHub admin approves the request, the integration remains **pending** and GitHub data sources cannot be created.
+**After admin approval**:
+
+Once a GitHub organization admin approves and completes the GitHub app installation:
+
+- The integration becomes fully active.
+
+- Olly gains access according to the permissions granted.
+
+- Users in the Olly organization can create GitHub data sources normally, including private repositories (subject to granted permissions).
 
 ## Next steps
 
