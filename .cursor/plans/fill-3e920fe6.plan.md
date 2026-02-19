@@ -1,4 +1,18 @@
-<!-- 3e920fe6-3f26-430a-a0cf-4b22df8f0d21 159d1f1b-b66f-4671-a541-0c50e809d49b -->
+---
+name: Update Release Notes To Cover Missing Capabilities
+overview: ""
+todos:
+  - id: df470f1e-88e8-4ec6-b55e-dfe77b451778
+    content: Add “Also available (foundational)” appendix to Nov 2025 notes
+    status: pending
+  - id: d4630478-c01d-4c02-a9bd-9ed25d4c8b70
+    content: Add chart types + supporting data views note to Oct 2025 notes
+    status: pending
+  - id: eb6c49b3-52a6-4a2a-90a0-4573f0d2fbb6
+    content: Add optional provider choice + file attachments bullets with cautious wording in Nov appendix
+    status: pending
+---
+
 # Update Release Notes To Cover Missing Capabilities
 
 ## Files to update
@@ -28,9 +42,3 @@
 ## Notes
 
 - Keep phrasing high‑level; no dates or GA/preview claims unless certain. Mark provider choice and file attachments as “optional/enterprise” capabilities.
-
-### To-dos
-
-- [ ] Add “Also available (foundational)” appendix to Nov 2025 notes
-- [ ] Add chart types + supporting data views note to Oct 2025 notes
-- [ ] Add optional provider choice + file attachments bullets with cautious wording in Nov appendix
