@@ -10,7 +10,7 @@ The GitHub integration allows Olly to use code context when answering questions,
 
 ## Why integrate GitHub?
 
-Connecting GitHub helps Olly move investigations to source code:
+Enabling GitHub helps Olly move investigations to source code:
 
 - Reduce manual debugging by tracing errors and anomalies directly to code.
 - Speed up investigations and RCA with file- and line-level context.
@@ -28,17 +28,23 @@ Connecting GitHub helps Olly move investigations to source code:
 
 ## Setup requirements
 
-To connect the GitHub integration:
+To enable the GitHub integration:
 
 - You must be an **Olly organization admin** to enable or disable the integration in Olly.
 
-- It is recommended that a **GitHub organization admin** perform the installation of the Olly app in GitHub. If you are not a GitHub organization admin, you can still initiate the installation. For more details, see the installation instructions below.
+- The GitHub app must be installed in your GitHub organization by either:
+
+    - A GitHub organization owner, or
+
+    - A user who is an admin of at least one repository in the organization (or when the organization has at least one public repository).
+
+- It is recommended that a **GitHub organization owner** perform the installation of the Olly app in GitHub. If you are not a GitHub organization admin, you can still initiate the installation. For more details, see the installation instructions below.
 
 <Note>Currently, Olly supports one GitHub integration per organization.</Note>
 
 ## Admin control and access
 
-- If an admin disconnects the GitHub integration, all GitHub data sources connected by users in the organization are immediately unavailable.
+- If an admin disables the GitHub integration, all GitHub data sources connected by users in the organization are immediately unavailable.
 - Users will no longer be able to use GitHub data sources in chat until the integration is re-enabled.
 
 ## Install the GitHub integration
@@ -46,28 +52,61 @@ To connect the GitHub integration:
 Installing the GitHub integration authorizes the Olly app in your GitHub organization. This allows Olly to access the repositories and permissions required to use code context during investigations and root cause analysis.
 
 1. Go to **Connections → Integrations → GitHub**.
-2. Toggle to **Connect**.
+2. Toggle to **Enable**.
 3. Complete the GitHub authentication flow.
 
-![Connect GitHub](./images/connect-git-hub.png)
+![Enable GitHub](./images/olly-integrations.png)
 
-Admins can opt out (disconnect) the integration at any time by using the integration toggle.
+Admins can opt out (disable) the integration at any time by using the integration toggle.
+
+<Tip>
+
+After installation, the connected GitHub organization appears as a badge on the integration page. This indicates which GitHub organization the Olly app is installed in.
+
+![GitHub badge](./images/github-badge.png)
+
+</Tip>
+
+### How repository access works
+
+When the Olly GitHub app is installed:
+
+- The app automatically receives access to all public repositories in the organization.
+
+- It also receives access to any private repositories for which the installing user has sufficient permissions (for example, if they are an admin or owner of that repository).
+
+Access is not automatically granted to all private repositories in the organization.
+
+### Managing repository permissions
+
+Repository access can be managed after installation.
+
+- Repository admins or owners can grant additional access to the Olly app.
+
+- In the chat repository dropdown, clicking “Configure access” redirects to GitHub.
+
+- From GitHub, users can authorize the Olly app for any repositories for which they have sufficient permissions.
+
+This allows repository-level control over which repositories Olly can access.
+
+<Info>If there are repositories you can access in GitHub that do not appear in the repository selection dropdown, select Configure access to authorize them, or contact a repository admin or organization owner to grant the Olly app access.
+![Connect repo](./images/olly-repos.png)</Info>
 
 ### Access behavior
 
-**If you are not a GitHub organization admin**:
+**If you are not a GitHub organization owner**:
 
 - The integration can still be created.
 
 - You will have immediate access to the public repositories you've selected in the GitHub organization.
 
-- Access to private repositories requires approval from a GitHub organization admin.
+- Access to private repositories requires approval from a GitHub organization owner.
 
-Until a GitHub organization admin approves the installation request, private repositories can't be chosen in the chat.
+Until a GitHub organization owner approves the installation request, private repositories can't be chosen in the chat.
 
-**After admin approval**:
+**After owner approval**:
 
-Once a GitHub organization admin approves and completes the GitHub app installation:
+Once a GitHub organization owner approves and completes the GitHub app installation:
 
 - The integration becomes fully active.
 
@@ -83,7 +122,7 @@ After the GitHub integration is enabled, individual users can connect their GitH
 
 Olly handles GitHub access and code context in accordance with our **Data Processing, Privacy, and Compliance** policies. For details on data handling, [encryption](https://docs.olly.new/content/olly-data-privacy-compliance#data-protection-and-network-security), [access controls](https://docs.olly.new/content/olly-data-privacy-compliance#access-control-behavior), and [compliance standards](https://docs.olly.new/content/olly-data-privacy-compliance#compliance-frameworks-and-attestations), see the [Data Processing, Privacy, and Compliance](https://docs.olly.new/content/olly-data-privacy-compliance) documentation.
 
-For more information on security measures, visit our [AI FAQ](https://coralogix.com/faq-coralogix-ai-tools/)ת [Trust Center](https://trust.coralogix.com/), and [Addendum to Coralogix Master Subscription Terms – Olly Services](https://coralogix.com/addendum-to-coralogix-master-subscription-terms-olly-services/).
+For more information on security measures, visit our [AI FAQ](https://coralogix.com/faq-coralogix-ai-tools/), [Trust Center](https://trust.coralogix.com/), and [Addendum to Coralogix Master Subscription Terms – Olly Services](https://coralogix.com/addendum-to-coralogix-master-subscription-terms-olly-services/).
 
 ### IP protection guarantee
 
