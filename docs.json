@@ -35,7 +35,8 @@
             "group": "🧩 Integrations",
             "pages": [
               "content/olly-slack-integration",
-              "content/olly-github-integration"           ]
+              "content/olly-github-integration"           
+            ]
           },
           {
             "group": "⭐ Features",
